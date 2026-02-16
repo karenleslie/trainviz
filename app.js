@@ -1,15 +1,16 @@
 (function () {
   "use strict";
 
-  const usBounds = L.latLngBounds(
-    [24.396308, -124.848974],
-    [49.384358, -66.885444]
+  const mapBounds = L.latLngBounds(
+    [24.396308, -141.0],
+    [60.0, -52.0]
   );
 
   const networkRoutes = Array.isArray(window.RAIL_NETWORK_ROUTES)
     ? window.RAIL_NETWORK_ROUTES
     : [];
   const routeLookup = new Map(networkRoutes.map((route) => [route.id, route]));
+  const defaultViewBounds = buildDefaultViewBounds(networkRoutes, mapBounds);
 
   const rawTrips = Array.isArray(window.TRAIN_TRIPS) ? window.TRAIN_TRIPS : [];
   const warnings = [];
@@ -27,8 +28,8 @@
     maxZoom: 11,
     zoomControl: true
   });
-  map.fitBounds(usBounds, { padding: [20, 20] });
-  map.setMaxBounds(usBounds.pad(0.4));
+  map.fitBounds(defaultViewBounds, { padding: [20, 20] });
+  map.setMaxBounds(mapBounds.pad(0.25));
 
   L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
     attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
@@ -64,7 +65,7 @@
       return;
     }
 
-    map.fitBounds(usBounds, { padding: [20, 20] });
+    map.fitBounds(defaultViewBounds, { padding: [20, 20] });
   }
 
   function getSelectedTrip() {
@@ -97,12 +98,41 @@
 
       L.polyline(route.path, {
         color: "#5a6d7f",
-        opacity: 0.28,
-        weight: 1.6,
+        opacity: 0.38,
+        weight: 2,
         lineCap: "round",
         lineJoin: "round"
       }).addTo(networkLayer);
     });
+  }
+
+  function buildDefaultViewBounds(routes, fallbackBounds) {
+    const points = [];
+    routes.forEach((route) => {
+      if (!route || !Array.isArray(route.path)) {
+        return;
+      }
+
+      route.path.forEach((point) => {
+        if (!Array.isArray(point) || point.length < 2) {
+          return;
+        }
+
+        const lat = point[0];
+        const lon = point[1];
+        if (!isValidCoordinate(lat, lon)) {
+          return;
+        }
+
+        points.push([lat, lon]);
+      });
+    });
+
+    if (points.length < 2) {
+      return fallbackBounds;
+    }
+
+    return L.latLngBounds(points);
   }
 
   function renderTripList() {

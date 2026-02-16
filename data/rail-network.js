@@ -327,7 +327,33 @@
     lebanon_tn: [36.2081, -86.2911],
 
     lorton: [38.7043, -77.2278],
-    sanford: [28.8029, -81.2695]
+    sanford: [28.8029, -81.2695],
+
+    windsor_on: [42.3149, -83.0364],
+    chatham_on: [42.4048, -82.191],
+    london_on: [42.9849, -81.2453],
+    toronto_on: [43.6532, -79.3832],
+    kingston_on: [44.2312, -76.486],
+    ottawa_on: [45.4215, -75.6972],
+    montreal_qc: [45.5017, -73.5673],
+    drummondville_qc: [45.88, -72.4848],
+    quebec_city_qc: [46.8139, -71.2082],
+    moncton_nb: [46.0878, -64.7782],
+    bathurst_nb: [47.6188, -65.6517],
+    campbellton_nb: [48.0075, -66.6727],
+    ste_foy_qc: [46.7879, -71.2894],
+    halifax_ns: [44.6488, -63.5752],
+    sudbury_on: [46.4917, -80.993],
+    toronto_west_jct_on: [43.6705, -79.4836],
+    malton_on: [43.7058, -79.6404],
+    brampton_on: [43.7315, -79.7624],
+    winnipeg_mb: [49.8951, -97.1384],
+    saskatoon_sk: [52.1332, -106.670],
+    edmonton_ab: [53.5461, -113.4938],
+    jasper_ab: [52.8737, -118.0814],
+    kamloops_bc: [50.6745, -120.3273],
+    prince_george_bc: [53.9171, -122.7497],
+    prince_rupert_bc: [54.315, -130.3208]
   };
 
   function buildPath(stopIds, routeId) {
@@ -1185,6 +1211,44 @@
     route("shore-line-east", "CT Rail", "Shore Line East", [
       "new_haven",
       "new_london"
+    ]),
+
+    route("viarail-quebec-windsor", "VIA Rail", "Quebec City-Windsor", [
+      "windsor_on",
+      "chatham_on",
+      "london_on",
+      "toronto_on",
+      "kingston_on",
+      "ottawa_on",
+      "montreal_qc",
+      "drummondville_qc",
+      "quebec_city_qc"
+    ]),
+    route("viarail-canadian", "VIA Rail", "The Canadian", [
+      "toronto_on",
+      "toronto_west_jct_on",
+      "malton_on",
+      "brampton_on",
+      "sudbury_on",
+      "winnipeg_mb",
+      "saskatoon_sk",
+      "edmonton_ab",
+      "jasper_ab",
+      "kamloops_bc",
+      "vancouver_bc"
+    ]),
+    route("viarail-ocean", "VIA Rail", "Ocean", [
+      "montreal_qc",
+      "ste_foy_qc",
+      "moncton_nb",
+      "bathurst_nb",
+      "campbellton_nb",
+      "halifax_ns"
+    ]),
+    route("viarail-skeena", "VIA Rail", "Skeena", [
+      "jasper_ab",
+      "prince_george_bc",
+      "prince_rupert_bc"
     ])
   ].filter((routeRecord) => routeRecord.path.length >= 2);
 })();

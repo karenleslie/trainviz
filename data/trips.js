@@ -890,5 +890,79 @@ window.TRAIN_TRIPS = [
         sequence: 2
       }
     ]
+  },
+  {
+    id: "the-canadian-attempt-1-fire",
+    name: "the Canadian attempt 1 (thwarted by fire)",
+    createdAt: "2024-01-01",
+    updatedAt: "2026-02-16",
+    stops: [
+      {
+        id: "can1-toronto",
+        name: "Toronto",
+        state: "ON",
+        stationName: "Toronto Union Station",
+        lat: 43.6532,
+        lon: -79.3832,
+        role: "origin"
+      },
+      {
+        id: "can1-saskatoon",
+        name: "Saskatoon",
+        state: "SK",
+        stationName: "Saskatoon Station",
+        lat: 52.1332,
+        lon: -106.67,
+        role: "destination"
+      }
+    ],
+    segments: [
+      {
+        id: "can1-seg-1",
+        operator: "VIA Rail",
+        lineName: "The Canadian",
+        fromStopId: "can1-toronto",
+        toStopId: "can1-saskatoon",
+        routeGeometryId: "viarail-canadian",
+        sequence: 1
+      }
+    ]
+  },
+  {
+    id: "the-canadian-attempt-2-ice",
+    name: "the Canadian attempt 2 (thwarted by ice)",
+    createdAt: "2024-01-01",
+    updatedAt: "2026-02-16",
+    stops: [
+      {
+        id: "can2-toronto",
+        name: "Toronto",
+        state: "ON",
+        stationName: "Toronto Union Station",
+        lat: 43.6532,
+        lon: -79.3832,
+        role: "origin"
+      },
+      {
+        id: "can2-turnaround",
+        name: "Turnaround Point",
+        state: "ON",
+        stationName: "Stopped before first station",
+        lat: 43.7315,
+        lon: -79.7624,
+        role: "destination"
+      }
+    ],
+    segments: [
+      {
+        id: "can2-seg-1",
+        operator: "VIA Rail",
+        lineName: "The Canadian",
+        fromStopId: "can2-toronto",
+        toStopId: "can2-turnaround",
+        routeGeometryId: "viarail-canadian",
+        sequence: 1
+      }
+    ]
   }
 ];
