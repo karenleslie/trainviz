@@ -916,6 +916,8 @@ window.TRAIN_TRIPS = [
     name: "the Canadian attempt 1 (thwarted by fire)",
     createdAt: "2024-01-01",
     updatedAt: "2026-02-16",
+    notes:
+      "I wanted to take the longest rail trip in Canada- much longer than any in the USA. We would have gone from Toronto to Vancouver if there hadn't been fires in Jasper. We turned around in Saskatoon, I detrained in Winnipeg. I got the strangest souvenir from this trip: I was featured in a Winnipeg news story!",
     stops: [
       {
         id: "can1-toronto",
@@ -933,6 +935,15 @@ window.TRAIN_TRIPS = [
         stationName: "Saskatoon Station",
         lat: 52.1332,
         lon: -106.67,
+        role: "transfer"
+      },
+      {
+        id: "can1-winnipeg",
+        name: "Winnipeg",
+        state: "MB",
+        stationName: "Winnipeg Union Station",
+        lat: 49.8951,
+        lon: -97.1384,
         role: "destination"
       }
     ],
@@ -945,6 +956,15 @@ window.TRAIN_TRIPS = [
         toStopId: "can1-saskatoon",
         routeGeometryId: "viarail-canadian",
         sequence: 1
+      },
+      {
+        id: "can1-seg-2",
+        operator: "VIA Rail",
+        lineName: "The Canadian",
+        fromStopId: "can1-saskatoon",
+        toStopId: "can1-winnipeg",
+        routeGeometryId: "viarail-canadian",
+        sequence: 2
       }
     ]
   },
@@ -953,6 +973,8 @@ window.TRAIN_TRIPS = [
     name: "the Canadian attempt 2 (thwarted by ice)",
     createdAt: "2024-01-01",
     updatedAt: "2026-02-16",
+    notes:
+      "I tried again to take the longest rail trip in Canada. This time, we didn't make it out of the Greater Toronto Area due to an ice storm bringing a tree down on the tracks. After this trip, I am certain that sitting in a stationary train does not have half the charm of sitting in a moving one.",
     stops: [
       {
         id: "can2-toronto",
