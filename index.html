@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>US Rail Trip Explorer</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="sidebar">
+      <header class="sidebar-header">
+        <p class="eyebrow">Train Viz</p>
+        <h1>US Rail Trip Explorer</h1>
+        <p class="sidebar-copy">
+          Browse trips and highlight transfers and intermediate destinations on the map.
+        </p>
+      </header>
+
+      <div id="validation-warnings" class="warnings" aria-live="polite"></div>
+
+      <div class="trip-toolbar">
+        <h2>Trips</h2>
+        <button id="clear-selection" type="button">Show All</button>
+      </div>
+
+      <ul id="trip-list" class="trip-list"></ul>
+
+      <section id="trip-details" class="trip-details" aria-live="polite">
+        <p class="hint">Select a trip to view segment-level details.</p>
+      </section>
+    </aside>
+
+    <section class="map-panel" aria-label="US rail map">
+      <div id="map"></div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="./data/rail-network.js"></script>
+  <script src="./data/trips.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
