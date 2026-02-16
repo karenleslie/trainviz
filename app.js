@@ -19,6 +19,7 @@
     .filter(Boolean);
 
   const tripListElement = document.getElementById("trip-list");
+  const tripSelectElement = document.getElementById("trip-select");
   const tripDetailsElement = document.getElementById("trip-details");
   const clearSelectionButton = document.getElementById("clear-selection");
   const warningElement = document.getElementById("validation-warnings");
@@ -45,6 +46,10 @@
 
   clearSelectionButton.addEventListener("click", () => {
     setSelectedTrip(null);
+  });
+  tripSelectElement.addEventListener("change", () => {
+    const selectedValue = tripSelectElement.value;
+    setSelectedTrip(selectedValue || null);
   });
 
   renderWarnings();
@@ -137,15 +142,30 @@
 
   function renderTripList() {
     tripListElement.innerHTML = "";
+    tripSelectElement.innerHTML = "";
     clearSelectionButton.disabled = !selectedTripId;
 
     if (!trips.length) {
-      const item = document.createElement("li");
-      item.className = "trip-item";
-      item.textContent = "No trips loaded yet.";
-      tripListElement.appendChild(item);
+      const emptyItem = document.createElement("li");
+      emptyItem.className = "trip-item";
+      emptyItem.textContent = "No trips loaded yet.";
+      tripListElement.appendChild(emptyItem);
+
+      const emptyOption = document.createElement("option");
+      emptyOption.value = "";
+      emptyOption.textContent = "No trips loaded yet.";
+      emptyOption.disabled = true;
+      emptyOption.selected = true;
+      tripSelectElement.appendChild(emptyOption);
+      tripSelectElement.disabled = true;
       return;
     }
+    tripSelectElement.disabled = false;
+
+    const allOption = document.createElement("option");
+    allOption.value = "";
+    allOption.textContent = "All trips";
+    tripSelectElement.appendChild(allOption);
 
     trips.forEach((trip) => {
       const listItem = document.createElement("li");
@@ -163,11 +183,12 @@
 
       const tripMeta = document.createElement("span");
       tripMeta.className = "trip-meta";
-      tripMeta.textContent = `${trip.segments.length} segments`;
+      tripMeta.textContent = `${trip.segments.length} segment${
+        trip.segments.length === 1 ? "" : "s"
+      }`;
 
       button.appendChild(tripName);
       button.appendChild(tripMeta);
-
       button.addEventListener("click", () => {
         const isSelected = selectedTripId === trip.id;
         setSelectedTrip(isSelected ? null : trip.id);
@@ -175,7 +196,16 @@
 
       listItem.appendChild(button);
       tripListElement.appendChild(listItem);
+
+      const option = document.createElement("option");
+      option.value = trip.id;
+      option.textContent = `${trip.displayName} (${trip.segments.length} segment${
+        trip.segments.length === 1 ? "" : "s"
+      })`;
+      tripSelectElement.appendChild(option);
     });
+
+    tripSelectElement.value = selectedTripId || "";
   }
 
   function renderMapLayers() {
