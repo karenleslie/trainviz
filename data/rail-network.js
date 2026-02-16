@@ -352,6 +352,10 @@
     edmonton_ab: [53.5461, -113.4938],
     jasper_ab: [52.8737, -118.0814],
     kamloops_bc: [50.6745, -120.3273],
+    banff_ab: [51.1784, -115.5708],
+    whistler_bc: [50.1163, -122.9574],
+    quesnel_bc: [52.9784, -122.4931],
+    moab_ut: [38.5733, -109.5498],
     prince_george_bc: [53.9171, -122.7497],
     prince_rupert_bc: [54.315, -130.3208]
   };
@@ -1249,6 +1253,30 @@
       "jasper_ab",
       "prince_george_bc",
       "prince_rupert_bc"
-    ])
+    ]),
+    route(
+      "rocky-mountaineer-first-passage-west",
+      "Rocky Mountaineer",
+      "First Passage to the West",
+      ["vancouver_bc", "kamloops_bc", "banff_ab"]
+    ),
+    route(
+      "rocky-mountaineer-journey-clouds",
+      "Rocky Mountaineer",
+      "Journey Through the Clouds",
+      ["vancouver_bc", "kamloops_bc", "jasper_ab"]
+    ),
+    route(
+      "rocky-mountaineer-rainforest-gold-rush",
+      "Rocky Mountaineer",
+      "Rainforest to Gold Rush",
+      ["vancouver_bc", "whistler_bc", "quesnel_bc", "jasper_ab"]
+    ),
+    route(
+      "rocky-mountaineer-red-rocks",
+      "Rocky Mountaineer",
+      "Rockies to the Red Rocks",
+      ["moab_ut", "glenwood_springs", "denver"]
+    )
   ].filter((routeRecord) => routeRecord.path.length >= 2);
 })();

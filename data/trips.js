@@ -10,6 +10,8 @@ window.TRAIN_TRIPS = [
     name: "Eclipse Trip 2024",
     createdAt: "2024-04-01",
     updatedAt: "2026-02-16",
+    notes:
+      "B and I went to New York to see the eclipse! Amateur mistake: I didn't give us a 24 hour buffer, so we were running late and decided to derail early in Rochester instead of going to Syracuse so we didn't miss the event! This is my only experience on an east coast sleeper, and we got put in the accessible room after some (re)scheduling mixups!",
     stops: [
       {
         id: "sd",
@@ -83,6 +85,8 @@ window.TRAIN_TRIPS = [
     name: "Dissertation trip",
     createdAt: "2024-01-01",
     updatedAt: "2026-02-16",
+    notes:
+      "I always said I would either get a room in Mexico or a seat on a train to do deep work for my dissertation. I was writing my dissertation in 2020, and Mexico was closed at the time, so I took the train to Seattle to visit a friend. Coach on the way there, roomette on the way back. I got all my data coded and an addiction to long distance train travel.",
     stops: [
       {
         id: "dis-sd-start",
@@ -174,6 +178,8 @@ window.TRAIN_TRIPS = [
     name: "Flagstaff trip",
     createdAt: "2024-01-01",
     updatedAt: "2026-02-16",
+    notes:
+      "Went with my sister in law to visit her aunt and uncle. Notably, she asked me to be her bridesmaid on this trip! We also arrived in Flagstaff before anything but the train station was opened, so we watched the train station soap opera unfold while we waited for the coffee shop to open.",
     stops: [
       {
         id: "flag-sd-start",
@@ -264,6 +270,8 @@ window.TRAIN_TRIPS = [
     name: "USARail Pass Trip",
     createdAt: "2024-01-01",
     updatedAt: "2026-02-16",
+    notes:
+      "During my postdoc, I got a USA rail pass: 10 segments in 30 days in coach. Visited friends all over the country, got a paper and a half written. A lifetime highlight. Photos available on my Instagram stories: @k_leslie",
     stops: [
       {
         id: "usap-sd-start",
@@ -461,6 +469,8 @@ window.TRAIN_TRIPS = [
     name: "CA Rail Pass Trip",
     createdAt: "2024-01-01",
     updatedAt: "2026-02-16",
+    notes:
+      "On a whim, decided to try the California Rail Pass. It was fun! Bakersfield was HOT.",
     stops: [
       {
         id: "ca-sd-start",
@@ -587,6 +597,8 @@ window.TRAIN_TRIPS = [
     name: "CSCW 2023",
     createdAt: "2023-10-01",
     updatedAt: "2026-02-16",
+    notes:
+      "Took the train on my way home from a conference. Glorious route. Took this trip in a roomette, and paid for it with points :)",
     stops: [
       {
         id: "cscw-minneapolis",
@@ -659,6 +671,8 @@ window.TRAIN_TRIPS = [
     name: "Bottle Logic Visit",
     createdAt: "2024-01-01",
     updatedAt: "2026-02-16",
+    notes:
+      "Went with B to visit a favorite brewery of his. Stayed in a Narnia themed treehouse Airbnb. Met baby goats. Drank beer. Yum.",
     stops: [
       {
         id: "bl-sd-start",
@@ -713,6 +727,8 @@ window.TRAIN_TRIPS = [
     name: "Milwaukee Trip",
     createdAt: "2024-01-01",
     updatedAt: "2026-02-16",
+    notes:
+      "Visited Milwaukee for a Vocal Adventures story. Exceeded my expectations massively. Recommend visiting the Pabst Mansion.",
     stops: [
       {
         id: "mil-sd",
@@ -786,6 +802,8 @@ window.TRAIN_TRIPS = [
     name: "Fabric Hunting with Dad",
     createdAt: "2024-01-01",
     updatedAt: "2026-02-16",
+    notes:
+      "Day trip up to Anaheim to visit an enormous fabric store as a surprise for Mom.",
     stops: [
       {
         id: "fabric-sd-start",
@@ -841,6 +859,8 @@ window.TRAIN_TRIPS = [
     name: "Dozens, probably, of LA visits",
     createdAt: "2024-01-01",
     updatedAt: "2026-02-16",
+    notes:
+      "I love to do a day or weekend trip up to LA. A perfect little writing retreat or lunch date.",
     stops: [
       {
         id: "dozens-sd-start",
@@ -961,6 +981,138 @@ window.TRAIN_TRIPS = [
         fromStopId: "can2-toronto",
         toStopId: "can2-turnaround",
         routeGeometryId: "viarail-canadian",
+        sequence: 1
+      }
+    ]
+  },
+  {
+    id: "vocab-adventures-trip-1",
+    name: "Vocab Adventures trip 1",
+    createdAt: "2024-01-01",
+    updatedAt: "2026-02-16",
+    notes:
+      "Visited Seattle to write about it for my fiction side project, Vocal Adventures (vocabadventures.com). Goal was to visit lesser known tourist destinations. It was a delight.",
+    stops: [
+      {
+        id: "vocab1-sd-start",
+        name: "San Diego",
+        state: "CA",
+        stationName: "Santa Fe Depot",
+        lat: 32.7157,
+        lon: -117.1611,
+        role: "origin"
+      },
+      {
+        id: "vocab1-la-out",
+        name: "Los Angeles",
+        state: "CA",
+        stationName: "Union Station",
+        lat: 34.0562,
+        lon: -118.2365,
+        role: "transfer"
+      },
+      {
+        id: "vocab1-seattle",
+        name: "Seattle",
+        state: "WA",
+        stationName: "King Street Station",
+        lat: 47.6062,
+        lon: -122.3321,
+        role: "stopover"
+      },
+      {
+        id: "vocab1-la-back",
+        name: "Los Angeles",
+        state: "CA",
+        stationName: "Union Station",
+        lat: 34.0562,
+        lon: -118.2365,
+        role: "transfer"
+      },
+      {
+        id: "vocab1-sd-end",
+        name: "San Diego",
+        state: "CA",
+        stationName: "Santa Fe Depot",
+        lat: 32.7157,
+        lon: -117.1611,
+        role: "destination"
+      }
+    ],
+    segments: [
+      {
+        id: "vocab1-seg-1",
+        operator: "Amtrak",
+        lineName: "Pacific Surfliner",
+        fromStopId: "vocab1-sd-start",
+        toStopId: "vocab1-la-out",
+        routeGeometryId: "amtrak-pacific-surfliner",
+        sequence: 1
+      },
+      {
+        id: "vocab1-seg-2",
+        operator: "Amtrak",
+        lineName: "Coast Starlight",
+        fromStopId: "vocab1-la-out",
+        toStopId: "vocab1-seattle",
+        routeGeometryId: "amtrak-coast-starlight",
+        sequence: 2
+      },
+      {
+        id: "vocab1-seg-3",
+        operator: "Amtrak",
+        lineName: "Coast Starlight",
+        fromStopId: "vocab1-seattle",
+        toStopId: "vocab1-la-back",
+        routeGeometryId: "amtrak-coast-starlight",
+        sequence: 3
+      },
+      {
+        id: "vocab1-seg-4",
+        operator: "Amtrak",
+        lineName: "Pacific Surfliner",
+        fromStopId: "vocab1-la-back",
+        toStopId: "vocab1-sd-end",
+        routeGeometryId: "amtrak-pacific-surfliner",
+        sequence: 4
+      }
+    ]
+  },
+  {
+    id: "rocky-mountaineer-vancouver-banff",
+    name: "Rocky Mountaineer",
+    createdAt: "2024-01-01",
+    updatedAt: "2026-02-16",
+    notes:
+      "Before I really got addicted to rail travel, I was treated to this incredible trip. You sit in an observation car, eat very nice freshly made food, and detrain in the evening to sleep in a stationary hotel, so you don't miss any views!",
+    stops: [
+      {
+        id: "rm-vancouver",
+        name: "Vancouver",
+        state: "BC",
+        stationName: "Vancouver Station",
+        lat: 49.2827,
+        lon: -123.1207,
+        role: "origin"
+      },
+      {
+        id: "rm-banff",
+        name: "Banff",
+        state: "AB",
+        stationName: "Banff Station",
+        lat: 51.1784,
+        lon: -115.5708,
+        role: "destination"
+      }
+    ],
+    segments: [
+      {
+        id: "rm-seg-1",
+        operator: "Rocky Mountaineer",
+        lineName: "First Passage to the West",
+        fromStopId: "rm-vancouver",
+        toStopId: "rm-banff",
+        routeGeometryId: "rocky-mountaineer-first-passage-west",
         sequence: 1
       }
     ]

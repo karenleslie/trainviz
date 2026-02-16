@@ -21,6 +21,7 @@
   const tripListElement = document.getElementById("trip-list");
   const tripSelectElement = document.getElementById("trip-select");
   const tripDetailsElement = document.getElementById("trip-details");
+  const tripNotesMobileElement = document.getElementById("trip-notes-mobile");
   const clearSelectionButton = document.getElementById("clear-selection");
   const warningElement = document.getElementById("validation-warnings");
 
@@ -57,6 +58,7 @@
   renderTripList();
   renderMapLayers();
   renderTripDetails(null);
+  renderTripNotesMobile(null);
 
   function setSelectedTrip(tripId) {
     selectedTripId = tripId;
@@ -64,6 +66,7 @@
     renderMapLayers();
     const selectedTrip = getSelectedTrip();
     renderTripDetails(selectedTrip);
+    renderTripNotesMobile(selectedTrip);
 
     if (selectedTrip) {
       fitMapToTrip(selectedTrip);
@@ -105,6 +108,7 @@
         color: "#5a6d7f",
         opacity: 0.38,
         weight: 2,
+        interactive: false,
         lineCap: "round",
         lineJoin: "round"
       }).addTo(networkLayer);
@@ -189,6 +193,17 @@
 
       button.appendChild(tripName);
       button.appendChild(tripMeta);
+
+      if (trip.id === selectedTripId) {
+        const noteText = getTripNotesText(trip);
+        if (noteText) {
+          const noteBlock = document.createElement("p");
+          noteBlock.className = "trip-item-note";
+          noteBlock.textContent = noteText;
+          button.appendChild(noteBlock);
+        }
+      }
+
       button.addEventListener("click", () => {
         const isSelected = selectedTripId === trip.id;
         setSelectedTrip(isSelected ? null : trip.id);
@@ -206,6 +221,28 @@
     });
 
     tripSelectElement.value = selectedTripId || "";
+  }
+
+  function renderTripNotesMobile(trip) {
+    tripNotesMobileElement.innerHTML = "";
+
+    if (!trip) {
+      return;
+    }
+
+    const noteText = getTripNotesText(trip);
+    if (!noteText) {
+      return;
+    }
+
+    const heading = document.createElement("h3");
+    heading.textContent = `${trip.displayName} Notes`;
+
+    const body = document.createElement("p");
+    body.textContent = noteText;
+
+    tripNotesMobileElement.appendChild(heading);
+    tripNotesMobileElement.appendChild(body);
   }
 
   function renderMapLayers() {
@@ -254,14 +291,19 @@
           selectedTraversalCounts
         );
 
-        L.polyline(path, {
+        const segmentLine = L.polyline(path, {
           color: lineStyle.color,
           opacity: lineStyle.opacity,
           weight: lineStyle.weight,
           dashArray: lineStyle.dashArray,
+          className: "trip-segment-line",
           lineCap: "round",
           lineJoin: "round"
         }).addTo(targetLayer);
+
+        segmentLine.on("click", () => {
+          setSelectedTrip(trip.id);
+        });
       });
 
       if (isSelected) {
@@ -953,6 +995,25 @@
       stopMap,
       segments
     };
+  }
+
+  function getTripNotesText(trip) {
+    if (!trip || typeof trip !== "object") {
+      return "";
+    }
+
+    if (typeof trip.notes === "string") {
+      return trip.notes.trim();
+    }
+
+    if (Array.isArray(trip.notes)) {
+      return trip.notes
+        .map((note) => String(note || "").trim())
+        .filter(Boolean)
+        .join("\n");
+    }
+
+    return "";
   }
 
   function isValidCoordinate(lat, lon) {
